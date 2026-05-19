@@ -6,7 +6,7 @@ const User = require("../models/User.model")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken") 
 
-const verifyToken = require("../middlewares/auth.middlewares")
+const { verifyToken } = require("../middlewares/auth.middlewares")
 
 // POST "/api/auth/signup" => creates the user document
 router.post("/signup", async (req, res, next) => {
@@ -94,6 +94,7 @@ router.post("/login", async (req, res, next) => {
       _id: foundUser._id,
       email: foundUser.email,
       // if we had roles, then they would need to be here.
+      role: foundUser.role
     }
 
     const tokenConfig = {
